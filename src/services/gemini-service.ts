@@ -13,7 +13,7 @@ export interface WordDefinition {
 
 export interface Word {
     word: string;
-    definitons: WordDefinition[];
+    definitions: WordDefinition[];
     examples: string[];
 }
 
@@ -38,12 +38,12 @@ export class GeminiService {
                     type: Type.ARRAY,
                     items: {
                         type: Type.OBJECT,
-                        required: ['word', 'definitons', 'examples'],
+                        required: ['word', 'definitions', 'examples'],
                         properties: {
                             word: {
                                 type: Type.STRING,
                             },
-                            definitons: {
+                            definitions: {
                                 type: Type.ARRAY,
                                 items: {
                                     type: Type.OBJECT,
