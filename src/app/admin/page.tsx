@@ -8,6 +8,7 @@ import {addWord} from '@/actions/add-word';
 import {Word} from '@/services/gemini-service';
 import {Word as PrismaWord} from '@/generated/prisma';
 import {getWords} from '@/actions/get-words';
+import {generateWords} from '@/actions/generate-words';
 
 export default function Home() {
     const [words, setWords] = useState<PrismaWord[]>([]);
@@ -31,6 +32,12 @@ export default function Home() {
         setWords(_words);
     };
 
+    const tryGenerateWords = async () => {
+        await generateWords();
+
+        await fetchWords();
+    };
+
     useEffect(() => {
         void fetchWords();
     }, []);
@@ -39,6 +46,13 @@ export default function Home() {
         <div className="w-full flex flex-col">
             <div className="w-full p-4 border-b-2">
                 <AddWordForm onSubmit={onSubmit} />
+                <button
+                    onClick={() => {
+                        void tryGenerateWords();
+                    }}
+                >
+                    Generate with Gemini
+                </button>
             </div>
             <div>
                 <WordsTable words={words} />
