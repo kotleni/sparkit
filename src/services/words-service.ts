@@ -1,5 +1,5 @@
 import {prisma} from '@/lib/prisma';
-import {Word} from './gemini-service';
+import {Word} from '@/services/gemini-service';
 
 export class WordsService {
     async fetchWords() {
