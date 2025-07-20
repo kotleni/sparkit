@@ -6,12 +6,13 @@ import {AddWordForm, AddWordFormInput} from './add-word-form';
 import {WordsTable} from './words-table';
 import {addWord} from '@/actions/add-word';
 import {Word} from '@/services/gemini-service';
-import {Word as PrismaWord} from '@/generated/prisma';
 import {getWords} from '@/actions/get-words';
 import {generateWords} from '@/actions/generate-words';
+import {WordWithDefinitions} from '@/services/words-service';
+import {Button} from '@/components/ui/button';
 
 export default function Home() {
-    const [words, setWords] = useState<PrismaWord[]>([]);
+    const [words, setWords] = useState<WordWithDefinitions[]>([]);
     const onSubmit: SubmitHandler<AddWordFormInput> = async data => {
         const word: Word = {
             word: data.word,
@@ -46,13 +47,13 @@ export default function Home() {
         <div className="w-full flex flex-col">
             <div className="w-full p-4 border-b-2">
                 <AddWordForm onSubmit={onSubmit} />
-                <button
+                <Button
                     onClick={() => {
                         void tryGenerateWords();
                     }}
                 >
                     Generate with Gemini
-                </button>
+                </Button>
             </div>
             <div>
                 <WordsTable words={words} />
