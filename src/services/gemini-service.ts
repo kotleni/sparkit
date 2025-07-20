@@ -27,6 +27,9 @@ function createPrompt(
     builder.append(
         `examples should have minimum ${examplesCount} items and each should have target word`,
     );
+    builder.append(
+        'examples and defintions for all words should be fully different',
+    );
     builder.append(`Give me ${wordsCount} words`);
     builder.append(
         `Definitions for languages: ${definitionLanguages.join(',')}`,
