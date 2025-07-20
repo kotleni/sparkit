@@ -16,13 +16,15 @@ export function WordsTable({words}: WordsTableProps) {
             </thead>
             {words.map(word => {
                 return (
-                    <tr className="p-2" key={word.id}>
-                        <th className="px-2">{word.word}</th>
-                        <td className="px-2">
-                            {word.definitions[0].definition}
-                        </td>
-                        <td className="px-2">{word.examples[0]}</td>
-                    </tr>
+                    <tbody>
+                        <tr className="p-2" key={word.id}>
+                            <th className="px-2">{word.word}</th>
+                            <td className="px-2">
+                                {word.definitions[0].definition}
+                            </td>
+                            <td className="px-2">{word.examples[0]}</td>
+                        </tr>
+                    </tbody>
                 );
             })}
         </table>
