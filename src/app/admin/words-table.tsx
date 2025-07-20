@@ -14,9 +14,9 @@ export function WordsTable({words}: WordsTableProps) {
                     <th scope="col">One example</th>
                 </tr>
             </thead>
-            {words.map(word => {
-                return (
-                    <tbody>
+            <tbody>
+                {words.map(word => {
+                    return (
                         <tr className="p-2" key={word.id}>
                             <th className="px-2">{word.word}</th>
                             <td className="px-2">
@@ -24,9 +24,9 @@ export function WordsTable({words}: WordsTableProps) {
                             </td>
                             <td className="px-2">{word.examples[0]}</td>
                         </tr>
-                    </tbody>
-                );
-            })}
+                    );
+                })}
+            </tbody>
         </table>
     );
 }
