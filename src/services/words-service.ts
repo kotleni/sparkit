@@ -1,13 +1,19 @@
+import {Prisma} from '@/generated/prisma';
 import {prisma} from '@/lib/prisma';
 import {Word} from '@/services/gemini-service';
 
+const wordWithDefinitionsArgs = {
+    include: {
+        definitions: true,
+    },
+};
+export type WordWithDefinitions = Prisma.WordGetPayload<
+    typeof wordWithDefinitionsArgs
+>;
+
 export class WordsService {
-    async fetchWords() {
-        return await prisma.word.findMany({
-            include: {
-                definitions: true,
-            },
-        });
+    async fetchWords(): Promise<WordWithDefinitions[]> {
+        return await prisma.word.findMany(wordWithDefinitionsArgs);
     }
 
     async addWords(words: Word[]) {
