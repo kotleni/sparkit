@@ -17,12 +17,25 @@ export function WordsTable({words}: WordsTableProps) {
             <tbody>
                 {words.map(word => {
                     return (
-                        <tr className="p-2" key={word.id}>
+                        <tr className="p-2 border-b-2" key={word.id}>
                             <th className="px-2">{word.word}</th>
-                            <td className="px-2">
-                                {word.definitions[0].definition}
+                            <td className="px-2 flex flex-col">
+                                {word.definitions.map(def => {
+                                    return (
+                                        <p key={def.id}>
+                                            <b className="pr-1">
+                                                {def.language}
+                                            </b>
+                                            {def.definition}
+                                        </p>
+                                    );
+                                })}
                             </td>
-                            <td className="px-2">{word.examples[0]}</td>
+                            <td className="px-2">
+                                {word.examples.map((example, index) => {
+                                    return <p key={index}>{example}</p>;
+                                })}
+                            </td>
                         </tr>
                     );
                 })}
